@@ -19,6 +19,7 @@ namespace ListsLibrary
         int RemoveNElementsBack(int count);
         int IndexOf(int element);
         int Length { get; }
+        int Capacity { get; }
         int Max();
         int Min();
         int IndexOfMax();
