@@ -4,9 +4,29 @@ using System.Text;
 
 namespace ListsLibrary
 {
-    class ArrayList : IList
+    public class ArrayList : IList
     {
-        public int Length => throw new NotImplementedException();
+        private int[] _array;
+        private int _count;
+
+        public int Length => _count;
+        public int Capacity => _array.Length;
+
+        public ArrayList()
+        {
+            _array = new int[4];
+        }
+
+        public ArrayList(int[] startArray)
+        {
+            _array = new int[startArray.Length];
+            for (int i = 0; i < startArray.Length; i++)
+            {
+                _array[i] = startArray[i];
+            }
+
+            _count = startArray.Length;
+        }
 
         public void AddBack(int element)
         {
