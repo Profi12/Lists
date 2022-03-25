@@ -91,6 +91,7 @@ namespace ListsConsole
                 Console.WriteLine(item);
             }
 
+            Console.WriteLine(aList.IndexOf(120));
         }
     }
 }

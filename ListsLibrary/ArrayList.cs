@@ -88,7 +88,15 @@ namespace ListsLibrary
 
         public int IndexOf(int element)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[i] == element)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
         }
 
         public int IndexOfMax()
