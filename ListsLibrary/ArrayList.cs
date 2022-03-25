@@ -12,10 +12,7 @@ namespace ListsLibrary
         public int Length => _count;
         public int Capacity => _array.Length;
 
-        public ArrayList()
-        {
-            _array = new int[4];
-        }
+        public ArrayList() : this(4) { }
 
         public ArrayList(int[] startArray)
         {
@@ -28,9 +25,16 @@ namespace ListsLibrary
             _count = startArray.Length;
         }
 
+        public ArrayList(int capacity)
+        {
+            _array = new int[capacity];
+        }
+
         public void AddBack(int element)
         {
-            throw new NotImplementedException();
+            UpdateCapacity();
+
+            _array[_count++] = element;
         }
 
         public void AddBack(IList list)
@@ -40,7 +44,15 @@ namespace ListsLibrary
 
         public void AddByIndex(int index, int element)
         {
-            throw new NotImplementedException();
+            UpdateCapacity();
+
+            for (int i = Length; i > index; i--)
+            {
+                _array[i] = _array[i - 1];
+            }
+
+            _array[index] = element;
+            ++_count;
         }
 
         public void AddByIndex(int index, IList list)
@@ -50,7 +62,15 @@ namespace ListsLibrary
 
         public void AddFront(int element)
         {
-            throw new NotImplementedException();
+            UpdateCapacity();
+
+            for (int i = Length; i > 0; i--)
+            {
+                _array[i] = _array[i - 1];
+            }
+
+            _array[0] = element;
+            ++_count;
         }
 
         public void AddFront(IList list)
@@ -60,7 +80,10 @@ namespace ListsLibrary
 
         public IEnumerator<int> GetEnumerator()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < Length; i++)
+            {
+                yield return _array[i];
+            }
         }
 
         public int IndexOf(int element)
@@ -136,6 +159,21 @@ namespace ListsLibrary
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
+        }
+
+        private void UpdateCapacity()
+        {
+            if (Length == Capacity)
+            {
+                int newSize = (int)(Capacity * 1.33);
+                int[] newArray = new int[newSize];
+                for (int i = 0; i < Length; i++)
+                {
+                    newArray[i] = _array[i];
+                }
+
+                _array = newArray;
+            }
         }
     }
 }

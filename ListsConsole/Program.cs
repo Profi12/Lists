@@ -77,7 +77,20 @@ namespace ListsConsole
 
         static void Main(string[] args)
         {
-            ArrayList aList = new ArrayList(new int[] { 1, 2, 3, 4, 5 });
+            ArrayList aList = new ArrayList();
+            ArrayList bList = new ArrayList(10);
+
+            aList.AddBack(10);
+            aList.AddBack(20);
+            aList.AddBack(30);
+            aList.AddByIndex(1, 5);
+            aList.AddByIndex(0, 2);
+            aList.AddByIndex(5, 100);
+            foreach (var item in aList)
+            {
+                Console.WriteLine(item);
+            }
+
         }
     }
 }
