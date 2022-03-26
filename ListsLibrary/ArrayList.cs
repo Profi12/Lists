@@ -6,17 +6,25 @@ namespace ListsLibrary
 {
     public class ArrayList : IList
     {
+        private const int DefaultSize = 4;
         private int[] _array;
         private int _count;
 
         public int Length => _count;
         public int Capacity => _array.Length;
 
-        public ArrayList() : this(4) { }
+        public ArrayList() : this(DefaultSize) { }
 
         public ArrayList(int[] startArray)
         {
-            _array = new int[startArray.Length];
+            if(startArray == null)
+            {
+                throw new ArgumentException();
+            }
+
+            int size = startArray.Length < DefaultSize ? DefaultSize : startArray.Length;
+            _array = new int[size];
+
             for (int i = 0; i < startArray.Length; i++)
             {
                 _array[i] = startArray[i];
@@ -166,7 +174,7 @@ namespace ListsLibrary
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
 
         private void UpdateCapacity()
