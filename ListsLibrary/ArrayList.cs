@@ -35,6 +35,12 @@ namespace ListsLibrary
 
         public ArrayList(int capacity)
         {
+            if (capacity < 0)
+            {
+                throw new ArgumentException();
+            }
+
+            capacity = capacity < DefaultSize ? DefaultSize : capacity;
             _array = new int[capacity];
         }
 
@@ -109,7 +115,21 @@ namespace ListsLibrary
 
         public int IndexOfMax()
         {
-            throw new NotImplementedException();
+            if (Length == 0)
+            {
+                throw new ArgumentException();
+            }
+
+            int maxI = 0;
+            for (int i = 0; i < _array.Length; i++)
+            {
+                if (_array[i] > _array[maxI])
+                {
+                    maxI = i;
+                }
+            }
+
+            return maxI;
         }
 
         public int IndexOfMin()

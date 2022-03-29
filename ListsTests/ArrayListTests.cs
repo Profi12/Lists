@@ -43,5 +43,44 @@ namespace ListsTests
 
             Assert.Fail();
         }
+
+        [TestCase(4)]
+        [TestCase(5)]
+        [TestCase(10)]
+        public void CapacityConstructor_WhenValidCapacity_ShouldSetCapacity(
+            int capacity)
+        {
+            ArrayList aList = new ArrayList(capacity);
+
+            Assert.AreEqual(capacity, aList.Capacity);
+            Assert.AreEqual(0, aList.Length);
+        }
+
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        public void CapacityConstructor_WhenLowCapacity_ShouldSetDefaultCapacity(int capacity)
+        {
+            ArrayList aList = new ArrayList(capacity);
+
+            Assert.AreEqual(0, aList.Length);
+            Assert.AreEqual(4, aList.Capacity);
+        }
+
+        [Test]
+        public void CapacityConstructor_WhenCapacityLowerZero_ShouldThrowArgumentException()
+        {
+            try
+            {
+                new ArrayList(-10);
+            }
+            catch (ArgumentException)
+            {
+                Assert.Pass();
+            }
+
+            Assert.Fail();
+        }
     }
 }

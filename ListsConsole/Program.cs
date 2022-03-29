@@ -77,8 +77,13 @@ namespace ListsConsole
 
         static void Main(string[] args)
         {
+            int[] arr = new int[] { -5, -3, -1, -2, -10, -7 };
+
+            //return max;
+
+
             ArrayList aList = new ArrayList();
-            ArrayList bList = new ArrayList(10);
+            //ArrayList bList = new ArrayList(10);
 
             aList.AddBack(10);
             aList.AddBack(20);
