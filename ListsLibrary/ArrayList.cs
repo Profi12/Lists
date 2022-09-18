@@ -89,7 +89,7 @@ namespace ListsLibrary
 
         public void AddFront(IList list)
         {
-            throw new NotImplementedException();
+            AddByIndex(0, list);
         }
 
         public IEnumerator<int> GetEnumerator()
